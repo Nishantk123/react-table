@@ -22,9 +22,9 @@ class App extends Component {
     axios
     .get('https://my.api.mockaroo.com/users.json?key=cde45810')
   .then(res =>{ 
-    console.log(res)
      this.setState({listData:res.data})
   })
+   
   };
   //Handle last name filter
   dataFilterHandler = (e ,data) => {
@@ -33,7 +33,6 @@ class App extends Component {
         if (e.target.value !== "") {
             currentList= this.state.listData? this.state.listData:"";
             currentList.filter(item => {
-              console.log(item[`${data}`])
             const lc = item&&item[`${data}`]?item[`${data}`].toLowerCase():"";
             const filter = e.target.value.toLowerCase();
             var datass=lc.includes(filter);
@@ -50,12 +49,9 @@ class App extends Component {
   }
   // next button handle 
   nextHandler = () => {
-    console.log(this.tableListData && this.tableListData.length/  this.state.setData -1)
     if(this.state.data < (this.tableListData && this.tableListData.length/  this.state.setData -1)){
-      console.log("data")
       this.setState({data:this.state.data + 1})
     }
-    console.log(this.state.listData && this.state.listData.length/  this.state.setData -2)
     if(this.state.data < (this.tableListData && this.tableListData.length/  this.state.setData -1)){
       this.setState({ countData: this.state.countData + 1})
     }
@@ -139,10 +135,26 @@ class App extends Component {
                   <th> Gender</th>
                 </tr>
                 <tr className="table-header">
-                  <th> <input  className="input" onChange={ (e) => this.dataFilterHandler(e, "first_name")} /></th>
-                  <th><input  className="input"  onChange={ (e) => this.dataFilterHandler(e, "last_name")}/> </th>
-                  <th> <input className="input"  onChange={ (e) => this.dataFilterHandler(e, "email")}/>  </th>
-                  <th> <input className="input" onChange={ (e) => this.dataFilterHandler(e, "gender")}/> </th>
+                  <th>
+                  <input 
+                   className="input"
+                   onChange={ (e) => this.dataFilterHandler(e, "first_name")}/>
+                  </th>
+                  <th>
+                  <input
+                   className="input" 
+                   onChange={ (e) => this.dataFilterHandler(e, "last_name")}/>
+                  </th>
+                  <th>
+                  <input
+                   className="input" 
+                   onChange={ (e) => this.dataFilterHandler(e, "email")}/>
+                  </th>
+                  <th>
+                  <input
+                   className="input" 
+                   onChange={ (e) => this.dataFilterHandler(e, "gender")}/>
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -177,6 +189,7 @@ class App extends Component {
               </div> 
             </div>
           </div>
+
         <div>
         </div>
       </div>
